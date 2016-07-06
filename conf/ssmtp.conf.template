@@ -1,0 +1,10 @@
+root=${SSMTP_EMAIL}
+mailhub=${SSMTP_HOST}:${SSMTP_PORT}
+AuthUser=${SSMTP_EMAIL}
+AuthPass=${SSMTP_PASSWORD}
+UseTLS=YES
+UseSTARTTLS=YES
+rewriteDomain=${SSMTP_DOMAIN}
+hostname=${SSMTP_EMAIL}
+FromLineOverride=YES
+

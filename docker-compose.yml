@@ -1,0 +1,11 @@
+mongo:
+  image: mongo:latest
+
+nodebb:
+  image: digitallumberjack/nodebb:latest
+  links:
+    - mongo:mongo
+  env_file:
+    - ./nodebb.env
+  ports:
+    - 4567:4567
