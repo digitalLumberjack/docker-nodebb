@@ -1,5 +1,5 @@
 FROM node:4.4
-ARG NODEBB_VERSION
+ARG NODEBB_VERSION=v1.0.4-auto.11
 
 RUN apt-get update && apt-get install -y gettext-base
 
