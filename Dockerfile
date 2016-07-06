@@ -1,4 +1,6 @@
 FROM node:4.4
+ARG NODEBB_VERSION
+
 RUN apt-get update && apt-get install -y gettext-base
 
 ENV NODE_ENV=production \
@@ -24,7 +26,7 @@ ENV SSMTP_PORT ''
 ENV SSMTP_PASSWORD ''
 
 WORKDIR /opt/nodebb
-ADD https://github.com/NodeBB/NodeBB/archive/v1.0.4-auto.11.tar.gz /opt/nodebb.tar.gz
+ADD https://github.com/NodeBB/NodeBB/archive/${NODEBB_VERSION}.tar.gz /opt/nodebb.tar.gz
 RUN tar xvzf /opt/nodebb.tar.gz -C /opt/nodebb --strip 1
 ADD start.sh /usr/local/bin/start.sh
 ADD conf/config.json.template /opt/nodebb/config.json.template
