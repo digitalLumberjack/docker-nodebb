@@ -25,6 +25,11 @@ ENV SSMTP_HOST ''
 ENV SSMTP_PORT ''
 ENV SSMTP_PASSWORD ''
 
+ENV AWS_ACCESS_KEY_ID ''
+ENV AWS_SECRET_ACCESS_KEY ''
+ENV S3_UPLOADS_BUCKET ''
+ENV S3_UPLOADS_HOST ''
+
 WORKDIR /opt/nodebb
 ADD https://github.com/NodeBB/NodeBB/archive/${NODEBB_VERSION}.tar.gz /opt/nodebb.tar.gz
 RUN tar xvzf /opt/nodebb.tar.gz -C /opt/nodebb --strip 1
@@ -33,5 +38,6 @@ ADD conf/config.json.template /opt/nodebb/config.json.template
 ADD conf/ssmtp.conf.template /etc/ssmtp/ssmtp.conf.template
 
 RUN npm install --production
+RUN npm install nodebb-plugin-s3-uploads-updated@0.3.10
 
 CMD /usr/local/bin/start.sh

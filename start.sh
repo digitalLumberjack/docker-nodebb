@@ -11,6 +11,6 @@ if [ ! -f /opt/nodebb/.stamp_installed ];then
 fi
 
 cd /opt/nodebb
-node app.js --setup "{\"admin:username\":\"${ADMIN_USERNAME}\",\"admin:password\":\"${ADMIN_PASSWORD}\",\"admin:password:confirm\":\"${ADMIN_PASSWORD}\",\"admin:email\":\"${ADMIN_EMAIL}\"}"
+node app.js --setup "{\"admin:username\":\"${ADMIN_USERNAME}\",\"admin:password\":\"${ADMIN_PASSWORD}\",\"admin:password:confirm\":\"${ADMIN_PASSWORD}\",\"admin:email\":\"${ADMIN_EMAIL}\"}" --defaultPlugins '["nodebb-plugin-composer-default","nodebb-plugin-markdown","nodebb-plugin-mentions","nodebb-widget-essentials","nodebb-rewards-essentials","nodebb-plugin-soundpack-default","nodebb-plugin-emoji-extended","nodebb-plugin-emoji-one","nodebb-plugin-s3-uploads-updated"]'
 [[ "$?" != "0" ]] && echo "Unable to install nodebb" && exit 1
 ./nodebb start
