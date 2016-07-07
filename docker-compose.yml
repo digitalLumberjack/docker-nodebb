@@ -2,10 +2,10 @@ mongo:
   image: mongo:latest
 
 nodebb:
-  image: digitallumberjack/nodebb:latest
+  image: nodebb
   links:
     - mongo:mongo
   env_file:
-    - ./nodebb.env
+    - ./nodebb.env.private
   ports:
     - 4567:4567
