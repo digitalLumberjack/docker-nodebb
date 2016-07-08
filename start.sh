@@ -13,7 +13,9 @@ if [ ! -f /opt/nodebb/.stamp_installed ];then
   IFS=$OIFS
   node app.js --setup "{\"admin:username\":\"${ADMIN_USERNAME}\",\"admin:password\":\"${ADMIN_PASSWORD}\",\"admin:password:confirm\":\"${ADMIN_PASSWORD}\",\"admin:email\":\"${ADMIN_EMAIL}\"}" --defaultPlugins "[\"nodebb-plugin-composer-default\",\"nodebb-plugin-markdown\",\"nodebb-plugin-mentions\",\"nodebb-widget-essentials\",\"nodebb-rewards-essentials\",\"nodebb-plugin-soundpack-default\",\"nodebb-plugin-emoji-extended\",\"nodebb-plugin-emoji-one\",\"nodebb-plugin-dbsearch\",\"nodebb-plugin-spam-be-gone\"${moduleToActivate}]" || (echo "Unable to install nodebb" && exit 1) 
   # TODO how to remove that (pr on nodebb install.js ?)
-  sed -i 's/    }/    },"socket.io": { "transports": ["websocket"]}/' config.json || (echo "Unable to patch config.json" && exit 1)
+  if [[ "${NODEBB_WEBSOCKETONLY}" == "true" ]];then
+    sed -i 's/    }/    },"socket.io": { "transports": ["websocket"]}/' config.json || (echo "Unable to patch config.json" && exit 1)
+  fi
   touch /opt/nodebb/.stamp_installed
 fi
 
