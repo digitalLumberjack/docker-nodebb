@@ -1,8 +1,8 @@
 mongo:
-  image: mongo:latest
+  image: mongo:3.2
 
 nodebb:
-  image: digitallumberjack/nodebb:latest
+  image: digitallumberjack/docker-nodebb:latest
   links:
     - mongo:mongo
   env_file:
