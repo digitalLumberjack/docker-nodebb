@@ -8,7 +8,15 @@ if [ ! -f /opt/nodebb/.stamp_installed ];then
   for module in ${NODEBB_PLUGINLIST};do
     echo "installing $module"
     npm install "$module" || (echo "Unable to install $module" && exit 1)
-    moduleToActivate="${moduleToActivate}, \"`echo $module | cut -f1 -d'@'`\""
+    moduleToActivate="${module}, \"`echo $module | cut -f1 -d'@'`\""
+    if [[ "$module" =~ "nodebb-plugin-ns-custom-fields" ]];then
+      echo "patching files for module $module"
+      sed -i '/<h2 class="username"><!-- IF !banned -->/a <!-- IMPORT partials\/account\/custom_fields_flex.tpl -->' node_modules/nodebb-theme-persona/templates/account/profile.tpl || (echo "Unable to patch $module" && exit 1)
+    fi
+    if [[ "$module" =~ "nodebb-plugin-ns-awards" ]];then
+      echo "patching files for module $module"
+      sed -i '/<h2 class="username"><!-- IF !banned -->/a <!-- IMPORT partials/awards_profile_flex.tpl -->' node_modules/nodebb-theme-persona/templates/account/profile.tpl || (echo "Unable to patch $module" && exit 1)
+    fi
   done
   IFS=$OIFS
   node app.js --setup "{\"admin:username\":\"${ADMIN_USERNAME}\",\"admin:password\":\"${ADMIN_PASSWORD}\",\"admin:password:confirm\":\"${ADMIN_PASSWORD}\",\"admin:email\":\"${ADMIN_EMAIL}\"}" --defaultPlugins "[\"nodebb-plugin-composer-default\",\"nodebb-plugin-markdown\",\"nodebb-plugin-mentions\",\"nodebb-widget-essentials\",\"nodebb-rewards-essentials\",\"nodebb-plugin-soundpack-default\",\"nodebb-plugin-emoji-extended\",\"nodebb-plugin-emoji-one\",\"nodebb-plugin-dbsearch\",\"nodebb-plugin-spam-be-gone\"${moduleToActivate}]" || (echo "Unable to install nodebb" && exit 1) 
