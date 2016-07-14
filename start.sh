@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /opt/nodebb
+
 if [ ! -f /opt/nodebb/.stamp_installed ];then
   echo "creating ssmtp configuration"
   envsubst < /etc/ssmtp/ssmtp.conf.template > /etc/ssmtp/ssmtp.conf || (echo "Unable to create ssmtp configuration" && exit 1)
@@ -27,5 +29,7 @@ if [ ! -f /opt/nodebb/.stamp_installed ];then
   touch /opt/nodebb/.stamp_installed
 fi
 
-cd /opt/nodebb
+if [[ "${NODEBB_AUTO_UPGRADE}" != "" && "${NODEBB_AUTO_UPGRADE}" != "false" ]];then
+  ./nodebb upgrade
+fi
 ./nodebb start

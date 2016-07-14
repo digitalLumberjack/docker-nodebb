@@ -23,6 +23,7 @@ sudo docker run --env-file=./nodebb.env -ti digitallumberjack/docker-nodebb:late
 * NODEBB_SECRET=ubersecretkey (the secret for password, should be the same on different containers for the same nodebb instance)
 * NODEBB_PLUGINLIST=nodebb-plugin-s3-uploads-updated@0.3.10 (the list of plugins to install at startup, separated by a space, optional)
 * NODEBB_WEBSOCKETONLY= (true or false)
+* NODEBB_AUTO_UPGRADE= (true or false)
 * MONGO_HOST=mongo (ip or hostname of mongo master, separated by "," for replica)
 * MONGO_PORT=27017 (port of mongo master, separated by "," for replica)
 * MONGO_USERNAME= (optional)
