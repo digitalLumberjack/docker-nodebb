@@ -1,5 +1,5 @@
 FROM node:4.4
-ARG NODEBB_VERSION=v1.0.4-auto.11
+ARG NODEBB_VERSION=v1.1.0
 
 ENV NODE_ENV=production \
     daemon=false \

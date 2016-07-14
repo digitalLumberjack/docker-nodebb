@@ -39,5 +39,5 @@ sudo docker run --env-file=./nodebb.env -ti digitallumberjack/docker-nodebb:late
 * AWS_ACCESS_KEY_ID= (amazon S3 access key id, optional)
 * AWS_SECRET_ACCESS_KEY= (amazon S3 secret access key, optional)
 * S3_UPLOADS_BUCKET= (amazon S3 bucket name, optional)
-* S3_UPLOADS_HOST= (amazon S3 bucket url, e.g. : forums.example.com.s3-website-eu-west-1.amazonaws.com)
+* S3_UPLOADS_HOST= (amazon S3 bucket url, e.g. : https://s3-eu-west-1.amazonaws.com/forums.example.com)
 
