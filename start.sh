@@ -10,7 +10,7 @@ if [ ! -f /opt/nodebb/.stamp_installed ];then
   for module in ${NODEBB_PLUGINLIST};do
     echo "installing $module"
     npm install "$module" || (echo "Unable to install $module" && exit 1)
-    moduleToActivate="${module}, \"`echo $module | cut -f1 -d'@'`\""
+    moduleToActivate="${moduleToActivate}, \"`echo $module | cut -f1 -d'@'`\""
     if [[ "$module" =~ "nodebb-plugin-ns-custom-fields" ]];then
       echo "patching files for module $module"
       sed -i '/<h2 class="username"><!-- IF !banned -->/a <!-- IMPORT partials\/account\/custom_fields_flex.tpl -->' node_modules/nodebb-theme-persona/templates/account/profile.tpl || (echo "Unable to patch $module" && exit 1)
