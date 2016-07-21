@@ -1,5 +1,6 @@
 FROM node:4.4
 ARG NODEBB_VERSION=v1.1.0
+ARG NODEBB_BUILD_PLUGINLIST
 
 ENV NODE_ENV=production \
     daemon=false \
@@ -37,9 +38,11 @@ WORKDIR /opt/nodebb
 ADD https://github.com/NodeBB/NodeBB/archive/${NODEBB_VERSION}.tar.gz /opt/nodebb.tar.gz
 RUN tar xvzf /opt/nodebb.tar.gz -C /opt/nodebb --strip 1
 ADD start.sh /usr/local/bin/start.sh
+ADD install-plugins.sh /usr/local/bin/install-plugins.sh
 ADD conf/config.json.template /opt/nodebb/config.json.template
 ADD conf/ssmtp.conf.template /etc/ssmtp/ssmtp.conf.template
 
 RUN npm install --production
+RUN /usr/local/bin/install-plugins.sh $NODEBB_BUILD_PLUGINLIST
 
 CMD /usr/local/bin/start.sh
