@@ -1,6 +1,6 @@
 FROM node:4.4
-ARG NODEBB_VERSION=v1.1.0
-ARG NODEBB_BUILD_PLUGINLIST="nodebb-plugin-s3-uploads-updated@0.3.11 nodebb-plugin-gravatar@2.0.3 nodebb-plugin-topic-tags@0.1.3  nodebb-plugin-question-and-answer@0.0.18 nodebb-plugin-sso-github@2.0.1 nodebb-plugin-sso-twitter@2.2.0 nodebb-plugin-sso-google@2.0.1 nodebb-plugin-sso-facebook@3.0.2 nodebb-plugin-ns-custom-fields@4.0.0 nodebb-plugin-ns-awards-next@4.0.4"
+ARG NODEBB_VERSION=v1.1.2
+ARG NODEBB_BUILD_PLUGINLIST="nodebb-plugin-s3-uploads-updated@0.3.11 nodebb-plugin-gravatar@2.0.3 nodebb-plugin-topic-tags@0.1.3  nodebb-plugin-question-and-answer@0.1.2 nodebb-plugin-sso-github@2.0.1 nodebb-plugin-sso-twitter@2.2.0 nodebb-plugin-sso-google@2.0.1 nodebb-plugin-sso-facebook@3.0.3 nodebb-plugin-ns-custom-fields@4.0.0 nodebb-plugin-ns-awards-next@4.0.4 nodebb-plugin-google-analytics@0.5.8"
 
 ENV NODE_ENV=production \
     daemon=false \
