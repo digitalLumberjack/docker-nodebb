@@ -10,6 +10,7 @@ for module in $@;do
   if [[ "$module" =~ "nodebb-plugin-ns-awards" ]];then
     echo "patching files for module $module"
     sed -i '/<h2 class="username"><!-- IF !banned -->/a <!-- IMPORT partials/awards_profile_flex.tpl -->' node_modules/nodebb-theme-persona/templates/account/profile.tpl || (echo "Unable to patch $module" && exit 1)
+    sed -i 's|<!-- IMPORT partials/topic/badge.tpl -->|<!-- IMPORT partials/topic/badge.tpl --><!-- IMPORT partials/awards_topic.tpl -->|g' node_modules/nodebb-theme-persona/templates/partials/topic/post.tpl || (echo "Unable to patch $module" && exit 1)
   fi
 done
 if [[ ! -z ${modulesToActivate} ]];then
