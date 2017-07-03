@@ -1,6 +1,10 @@
 docker-nodebb
 ===========
 
+
+__MOVED TO https://gitlab.com/recalbox/ops/nodebb__
+
+---------------------------------------------------------------------------------------------------
 This docker image provide a nodebb forum, with silent install and smtp relay enabled with ssmtp.
 
 ## How to use : 
